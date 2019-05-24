@@ -24,5 +24,13 @@ pipeline {
                 sh './mvnw clean compile'
             }
         }
+        stage('Unit tests') {
+            steps {
+                echo "Execute unit tests ***************************************"
+                sh "./mvnw test"
+                junit 'target/surefire-reports/*.xml'
+                jacoco execPattern: 'target/jacoco.exec'
+            }
+        }
     }
 }
