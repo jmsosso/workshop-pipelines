@@ -21,7 +21,7 @@ Both Jenkins and SonarQube servers are required for running the pipelines and co
         --publish 9080:8080 --publish 50000:50000 \
         --mount type=volume,source=ci-jenkins-home,target=/var/jenkins_home \
         --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
-        --mount type=bind,source=/usr/local/bin/docker,target=/usr/local/bin/docker \
+        --mount type=bind,source=/usr/bin/docker,target=/usr/local/bin/docker \
         --env JAVA_OPTS="-Xmx2048M" \
         --env JENKINS_OPTS="--prefix=/jenkins" \
         jenkins/jenkins:2.164.3
