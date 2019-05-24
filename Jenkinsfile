@@ -41,5 +41,12 @@ pipeline {
             }
         }
 
+        stage('Package') {
+            steps {
+                echo "Packaging project ****************************************"
+                sh "./mvnw package -DskipTests"
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
     }
 }
