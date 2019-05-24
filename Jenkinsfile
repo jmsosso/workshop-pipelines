@@ -24,6 +24,7 @@ pipeline {
                 sh './mvnw clean compile'
             }
         }
+
         stage('Unit tests') {
             steps {
                 echo "Execute unit tests ***************************************"
@@ -32,5 +33,13 @@ pipeline {
                 jacoco execPattern: 'target/jacoco.exec'
             }
         }
+
+        stage('Mutation tests') {
+            steps {
+                echo "Execute mutation tests ***********************************"
+                sh "./mvnw org.pitest:pitest-maven:mutationCoverage"
+            }
+        }
+
     }
 }
